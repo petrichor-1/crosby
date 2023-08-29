@@ -1,4 +1,9 @@
 import math
+from sys import argv
+
+if len(argv) < 3:
+	print("Use " + argv[0] + " <range start> <range end>")
+	exit(1)
 
 def check_input(input, target):
 	encoded = "/"
@@ -17,7 +22,7 @@ def check_input(input, target):
 			return False
 	return True
 
-for i in range(10000000,99999999):
+for i in range(int(argv[1]),int(argv[2])):
 	if check_input(str(i), "/153718425026999"):
 		print(str(i) + " is valid!")
 	if i % 10000000 == 0:
