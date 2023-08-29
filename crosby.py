@@ -1,6 +1,6 @@
 import math
 
-def decode(input):
+def check_input(input, target):
 	encoded = "/"
 	for idx in range(8):
 		if idx%2 == 0:
@@ -13,10 +13,12 @@ def decode(input):
 			check_alg_2 = math.floor((math.sin(math.radians(float(input[(idx+2+len(input))%len(input)])))+math.cos(math.radians(float(input[(idx-2+len(input))%len(input)]))))*100)%99/100
 			check_alg_3 = math.ceil(float(input[idx])*(check_alg_1+check_alg_2+float(input[len(input)-idx])))
 			encoded += str(check_alg_3)
-	return encoded
+		if not target.startswith(encoded):
+			return False
+	return True
 
 for i in range(10000000,99999999):
-	if decode(str(i)) == "/153718425026999":
+	if check_input(str(i), "/153718425026999"):
 		print(str(i) + " is valid!")
 	if i % 10000000 == 0:
 		print("Reached " + str(i))
